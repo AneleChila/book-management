@@ -1,4 +1,4 @@
-package com.payu.booksmanagement.controller;
+package com.payu.api.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.payu.api.request.CreateBookRequest;

@@ -1,4 +1,4 @@
-package com.payu.booksmanagement.validator;
+package com.payu.service.validator;
 
 import com.payu.api.request.CreateBookRequest;
 import com.payu.api.request.UpdateBookRequest;
