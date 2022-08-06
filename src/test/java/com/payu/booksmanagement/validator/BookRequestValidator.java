@@ -1,8 +1,8 @@
 package com.payu.booksmanagement.validator;
 
-import com.payu.model.BookType;
-import com.payu.request.CreateBookRequest;
-import com.payu.request.UpdateBookRequest;
+import com.payu.api.request.CreateBookRequest;
+import com.payu.api.request.UpdateBookRequest;
+import com.payu.persistence.model.BookType;
 import org.junit.Test;
 
 import javax.validation.ConstraintViolation;

@@ -1,12 +1,12 @@
 package com.payu.booksmanagement.service;
 
-import com.payu.exception.BadRequestException;
-import com.payu.exception.InvalidRequestException;
-import com.payu.model.BookType;
-import com.payu.request.CreateBookRequest;
-import com.payu.request.UpdateBookRequest;
-import com.payu.response.GetBooksResponse;
-import com.payu.response.UpdateBookResponse;
+import com.payu.api.exception.BadRequestException;
+import com.payu.api.exception.InvalidRequestException;
+import com.payu.api.request.CreateBookRequest;
+import com.payu.api.request.UpdateBookRequest;
+import com.payu.api.response.GetBooksResponse;
+import com.payu.api.response.UpdateBookResponse;
+import com.payu.persistence.model.BookType;
 import com.payu.service.BookService;
 import org.junit.After;
 import org.junit.Before;

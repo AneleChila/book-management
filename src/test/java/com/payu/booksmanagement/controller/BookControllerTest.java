@@ -1,10 +1,9 @@
 package com.payu.booksmanagement.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.payu.controller.BookController;
-import com.payu.model.BookType;
-import com.payu.request.CreateBookRequest;
-import com.payu.response.GetBooksResponse;
+import com.payu.api.request.CreateBookRequest;
+import com.payu.api.response.GetBooksResponse;
+import com.payu.persistence.model.BookType;
 import com.payu.service.BookService;
 import org.junit.Before;
 import org.junit.Test;
@@ -28,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Anele Chila
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(BookController.class)
+@WebMvcTest(com.payu.controller.BookController.class)
 public class BookControllerTest {
 
     private static final Long TEST_BOOK_ID = 1L;

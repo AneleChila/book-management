@@ -1,11 +1,11 @@
 package com.payu.service;
 
-import com.payu.request.CreateBookRequest;
-import com.payu.request.UpdateBookRequest;
-import com.payu.response.CreateBookResponse;
-import com.payu.response.DeleteBookResponse;
-import com.payu.response.GetBooksResponse;
-import com.payu.response.UpdateBookResponse;
+import com.payu.api.request.CreateBookRequest;
+import com.payu.api.request.UpdateBookRequest;
+import com.payu.api.response.CreateBookResponse;
+import com.payu.api.response.DeleteBookResponse;
+import com.payu.api.response.GetBooksResponse;
+import com.payu.api.response.UpdateBookResponse;
 import org.springframework.validation.BindingResult;
 
 /**

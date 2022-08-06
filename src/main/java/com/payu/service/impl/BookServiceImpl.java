@@ -1,23 +1,23 @@
 package com.payu.service.impl;
 
+import com.payu.api.exception.BadRequestException;
+import com.payu.api.exception.InternalServerErrorException;
+import com.payu.api.exception.InvalidRequestException;
+import com.payu.api.exception.errors.ErrorCodes;
+import com.payu.api.request.CreateBookRequest;
+import com.payu.api.request.UpdateBookRequest;
+import com.payu.api.response.*;
 import com.payu.config.logging.BooksAroundLogger;
-import com.payu.exception.BadRequestException;
-import com.payu.exception.InternalServerErrorException;
-import com.payu.exception.InvalidRequestException;
-import com.payu.exception.errors.ErrorCodes;
-import com.payu.model.Book;
-import com.payu.repository.BookRepository;
-import com.payu.request.CreateBookRequest;
-import com.payu.request.UpdateBookRequest;
-import com.payu.response.*;
+import com.payu.persistence.model.Book;
+import com.payu.persistence.repository.BookRepository;
 import com.payu.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 
-import static com.payu.exception.errors.ErrorCodes.DUPLICATE_FIELD_ISBN_NUMBER;
-import static com.payu.exception.errors.ErrorCodes.INVALID_REQUEST;
+import static com.payu.api.exception.errors.ErrorCodes.DUPLICATE_FIELD_ISBN_NUMBER;
+import static com.payu.api.exception.errors.ErrorCodes.INVALID_REQUEST;
 
 /**
  * @author Anele Chila
