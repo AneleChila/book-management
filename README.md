@@ -12,17 +12,20 @@ https://www.baeldung.com/wp-content/uploads/2021/06/Layered-Architecture.png
 - Add
 - Update
 - Delete
+
+
 **2. Utilise an in-memory DB to support the above-mentioned operations.**
--Book data required:
--Name
--ISBN Number
--Publish date (dd/MM/yyyy)
--Price (ZAR)
--Book Type (Hard Cover, Soft Cover, eBook, etc.)
+- Book data required:
+- Name
+- ISBN Number
+- Publish date (dd/MM/yyyy)
+- Price (ZAR)
+- Book Type (Hard Cover, Soft Cover, eBook, etc.)
+
 **3. Technical:**
-Spring Boot 2 application
-Java version: 1.8
-Maven project
+- Spring Boot 2 application
+- Java version: 1.8
+- Maven project
 
 
 ## Getting Started
