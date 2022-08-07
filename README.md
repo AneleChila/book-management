@@ -5,26 +5,20 @@ Application layering
 https://www.baeldung.com/wp-content/uploads/2021/06/Layered-Architecture.png
 ![Layered-Architecture](https://user-images.githubusercontent.com/40594521/183267307-484d1613-0613-49ca-844d-b5f7214be6a0.JPEG)
 
-Requirements
+## Requirements
 
-Java - 1.8.x
+1. Java - 1.8.x
 
-Maven - 3.3.9
+2. Maven - 4.x.x
 
-MySQL - 5.7.12
+5. Spring Boot - 2.x.x
 
-Hibernate - 5.1.0.Final
 
-Spring Boot - 2.0.5
+## Getting Started
 
-Getting Started
 
-1. Clone the application
+**1. Clone the application**
 
-git clone https://github.com/scbushan05/book-management-system.git
-2. Create Mysql database
-
-CREATE DATABASE bookdb;
-Select the database,
-
-USE bookdb;
+```bash
+git clone https://github.com/scbushan05/book-management.git
+```
