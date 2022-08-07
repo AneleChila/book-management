@@ -12,6 +12,8 @@ import com.payu.persistence.model.Book;
 import com.payu.persistence.repository.BookRepository;
 import com.payu.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
@@ -47,13 +49,16 @@ public class BookServiceImpl implements BookService {
 
     @Override
     @AroundLogger
-    public GetBooksResponse findAllBooks(Pageable pageable) {
+    public GetBooksResponse findAllBooks(int pageNo, int pageSize) {
         GetBooksResponse response = new GetBooksResponse();
         try {
-            bookRepository.findAll()
-                    .forEach(book ->
-                            response.addBook(new GetBookResponse(book))
-                    );
+            Page<Book> page = bookRepository.findAll(PageRequest.of(pageNo, pageSize));
+            response.setTotalBooks(page.getTotalElements());
+            response.setTotalPages(page.getTotalPages());
+
+            page.get().forEach(book ->
+                    response.addBook(new GetBookResponse(book))
+            );
 
             return response;
         } catch (RuntimeException e) {

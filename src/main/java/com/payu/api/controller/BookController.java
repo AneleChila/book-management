@@ -1,4 +1,4 @@
-package com.payu.controller;
+package com.payu.api.controller;
 
 
 import com.payu.api.request.CreateBookRequest;
@@ -44,8 +44,10 @@ public class BookController {
     }
 
     @RequestMapping(value = "", method = RequestMethod.GET)
-    public GetBooksResponse getAllBooks(@RequestParam("pageNo") int pageNo, @RequestParam("pageSize") int pageSize) {
-        return bookService.findAllBooks();
+    public GetBooksResponse getAllBooks(
+            @RequestParam(name = "pageNo", required = false, defaultValue = "0") int pageNo,
+            @RequestParam(name = "pageSize", required = false, defaultValue = "10") int pageSize) {
+        return bookService.findAllBooks(pageNo, pageSize);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)

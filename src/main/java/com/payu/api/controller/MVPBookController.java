@@ -26,7 +26,7 @@ public class MVPBookController {
     @RequestMapping(value = {"/", "/home", "/index"})
     public ModelAndView getAllBook() {
         ModelAndView mav = new ModelAndView("managebook");
-        mav.addObject("books", bookService.findAllBooks());
+        //mav.addObject("books", bookService.findAllBooks());
         return mav;
     }
 
@@ -41,7 +41,7 @@ public class MVPBookController {
     public ModelAndView bookProcess(@ModelAttribute("book") CreateBookRequest book) {
         ModelAndView mav = new ModelAndView("managebook");
         bookService.saveBook(book, null);
-        mav.addObject("books", bookService.findAllBooks());
+        //mav.addObject("books", bookService.findAllBooks());
         return mav;
     }
 
@@ -56,7 +56,7 @@ public class MVPBookController {
     public ModelAndView deleteBook(@RequestParam("bookid") Long id) {
         ModelAndView mav = new ModelAndView("managebook");
         bookService.deleteBookById(id);
-        mav.addObject("books", bookService.findAllBooks());
+        //mav.addObject("books", bookService.findAllBooks());
         return mav;
     }
 }

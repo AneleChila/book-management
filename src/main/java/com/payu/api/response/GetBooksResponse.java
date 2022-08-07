@@ -16,6 +16,8 @@ import java.util.List;
 public class GetBooksResponse extends BookResponse {
 
     private List<GetBookResponse> booksList =  new ArrayList<>();
+    private long totalBooks;
+    private long totalPages;
 
     public GetBooksResponse() {
         super(ResponseCode.RETRIEVED.getCode(),ResponseCode.RETRIEVED.getDesc());

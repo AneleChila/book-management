@@ -27,7 +27,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @author Anele Chila
  */
 @RunWith(SpringJUnit4ClassRunner.class)
-@WebMvcTest(com.payu.controller.BookController.class)
+@WebMvcTest(com.payu.api.controller.BookController.class)
 public class BookControllerTest {
 
     private static final Long TEST_BOOK_ID = 1L;

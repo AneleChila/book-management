@@ -14,7 +14,7 @@ import org.springframework.validation.BindingResult;
  */
 public interface BookService {
 
-    GetBooksResponse findAllBooks(Pageable pageable);
+    GetBooksResponse findAllBooks(int pageNo, int pageSize);
     GetBooksResponse findBookById(Long id);
     CreateBookResponse saveBook(CreateBookRequest request, BindingResult bindingResult);
     UpdateBookResponse updatedBook(UpdateBookRequest request, Long id, BindingResult bindingResult) ;

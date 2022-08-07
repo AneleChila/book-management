@@ -112,7 +112,7 @@ public class BookServiceTest {
             createAnyBook();
         }
 
-        GetBooksResponse response = bookService.findAllBooks();
+        GetBooksResponse response = bookService.findAllBooks(0, 10);
 
         assertThat(response).isNotNull();
         assertThat(response.getBooksList().size()).isEqualTo(numOfBooks);
