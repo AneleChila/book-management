@@ -20,5 +20,22 @@ https://www.baeldung.com/wp-content/uploads/2021/06/Layered-Architecture.png
 **1. Clone the application**
 
 ```bash
-git clone https://github.com/scbushan05/book-management.git
+git clone https://github.com/AneleChila/books-management.git
+```
+**2. Build the application**
+
+```bash
+mvn clean install
+```
+
+**3. run the application**
+
+```bash
+mvn spring-boot:run
+```
+
+**4. Application swagger documentation**
+
+```bash
+http://localhost:8080/api/swagger-ui/index.html#/
 ```
