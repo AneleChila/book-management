@@ -28,14 +28,20 @@ git clone https://github.com/AneleChila/books-management.git
 mvn clean install
 ```
 
-**3. run the application**
+**3. Run the application**
 
 ```bash
 mvn spring-boot:run
 ```
 
-**4. Application swagger documentation**
+## Documentation
 
+**1. Swagger UI**
 ```bash
 http://localhost:8080/api/swagger-ui/index.html#/
+```
+
+**2. Import JSON Collection**
+```bash
+http://localhost:8080/api/api-docs/
 ```
