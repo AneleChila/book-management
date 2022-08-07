@@ -12,5 +12,4 @@ class BooksManagementApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }

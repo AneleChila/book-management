@@ -6,6 +6,8 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 /**
+ * This class is to permit unrestricted access to the API's
+ *
  * @author Anele Chila
  */
 @Configuration
@@ -19,5 +21,4 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .and().csrf().disable();
     }
-
 }

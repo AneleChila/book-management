@@ -6,6 +6,7 @@ import com.payu.api.response.CreateBookResponse;
 import com.payu.api.response.DeleteBookResponse;
 import com.payu.api.response.GetBooksResponse;
 import com.payu.api.response.UpdateBookResponse;
+import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 
 /**
@@ -13,7 +14,7 @@ import org.springframework.validation.BindingResult;
  */
 public interface BookService {
 
-    GetBooksResponse findAllBooks();
+    GetBooksResponse findAllBooks(Pageable pageable);
     GetBooksResponse findBookById(Long id);
     CreateBookResponse saveBook(CreateBookRequest request, BindingResult bindingResult);
     UpdateBookResponse updatedBook(UpdateBookRequest request, Long id, BindingResult bindingResult) ;

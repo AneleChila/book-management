@@ -10,15 +10,19 @@ import java.util.Arrays;
 import java.util.logging.Level;
 
 /**
+ * This class is for logging out information *around* methods.
+ * We make use of AOP to separate the concern of logging out of the business logic.
+ * This class will also log out any exceptions.
+ *
  * @author Anele Chila
  */
 @Aspect
-public class ExceptionInterceptor {
+public class LoggingInterceptor {
 
-    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(ExceptionInterceptor.class.getName());
+    private static final java.util.logging.Logger LOGGER = java.util.logging.Logger.getLogger(LoggingInterceptor.class.getName());
 
     @Around("execution(* * (..))"
-            + " && @annotation(ExceptionLogger)"
+            + " && @annotation(AroundLogger)"
     )
     public Object exceptionLogger(final ProceedingJoinPoint point) throws Throwable {
         final Method method

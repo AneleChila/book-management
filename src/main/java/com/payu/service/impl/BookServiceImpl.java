@@ -7,11 +7,12 @@ import com.payu.api.exception.errors.ErrorCodes;
 import com.payu.api.request.CreateBookRequest;
 import com.payu.api.request.UpdateBookRequest;
 import com.payu.api.response.*;
-import com.payu.config.logging.BooksAroundLogger;
+import com.payu.config.logging.AroundLogger;
 import com.payu.persistence.model.Book;
 import com.payu.persistence.repository.BookRepository;
 import com.payu.service.BookService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
@@ -20,6 +21,12 @@ import static com.payu.api.exception.errors.ErrorCodes.DUPLICATE_FIELD_ISBN_NUMB
 import static com.payu.api.exception.errors.ErrorCodes.INVALID_REQUEST;
 
 /**
+ * The BookService is responsible for first doing input validation
+ * as that needs to be done as soon as possible. The business logic is
+ * processed as soon input validation is done. Validation is done on the service
+ * instead of the controller to account for situations where the input is not coming
+ * only from the controller. This is important in protecting the state of the db.
+ *
  * @author Anele Chila
  */
 @Service
@@ -31,8 +38,7 @@ public class BookServiceImpl implements BookService {
 
 
     @Autowired
-    public BookServiceImpl(BookRepository bookRepository,
-                           Validator createBookValidator,
+    public BookServiceImpl(BookRepository bookRepository, Validator createBookValidator,
                            Validator updateBookValidator) {
         this.bookRepository = bookRepository;
         this.createBookValidator = createBookValidator;
@@ -40,8 +46,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    @BooksAroundLogger
-    public GetBooksResponse findAllBooks() {
+    @AroundLogger
+    public GetBooksResponse findAllBooks(Pageable pageable) {
         GetBooksResponse response = new GetBooksResponse();
         try {
             bookRepository.findAll()
@@ -50,13 +56,13 @@ public class BookServiceImpl implements BookService {
                     );
 
             return response;
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             throw new InternalServerErrorException(ErrorCodes.GENERAL_DATABASE_ERR.getResponseDesc());
         }
     }
 
     @Override
-    @BooksAroundLogger
+    @AroundLogger
     public GetBooksResponse findBookById(Long id) {
         GetBooksResponse response = new GetBooksResponse();
 
@@ -68,9 +74,8 @@ public class BookServiceImpl implements BookService {
     }
 
     @Override
-    @BooksAroundLogger
+    @AroundLogger
     public CreateBookResponse saveBook(CreateBookRequest request, BindingResult bindingResult) {
-
         validateCreateRequest(request, bindingResult);
 
         Book book = new Book();
@@ -78,15 +83,14 @@ public class BookServiceImpl implements BookService {
 
         try {
             return new CreateBookResponse(bookRepository.save(book));
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             throw new InternalServerErrorException(ErrorCodes.GENERAL_DATABASE_ERR.getResponseDesc());
         }
     }
 
     @Override
-    @BooksAroundLogger
+    @AroundLogger
     public UpdateBookResponse updatedBook(UpdateBookRequest request, Long id, BindingResult bindingResult) {
-
         validateUpdateRequest(request, bindingResult);
 
         Book book = bookRepository.findById(id)
@@ -95,21 +99,21 @@ public class BookServiceImpl implements BookService {
 
         try {
             return new UpdateBookResponse(bookRepository.save(book));
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             throw new InternalServerErrorException(ErrorCodes.GENERAL_DATABASE_ERR.getResponseDesc());
         }
     }
 
     @Override
-    @BooksAroundLogger
+    @AroundLogger
     public DeleteBookResponse deleteBookById(Long id) {
-        //check if exits
+        //check book if exits
         bookRepository.findById(id)
                 .orElseThrow(() -> new BadRequestException(ErrorCodes.BOOK_NOT_FOUND.getResponseDesc()));
         try {
             bookRepository.deleteById(id);
             return new DeleteBookResponse();
-        } catch (Exception e) {
+        } catch (RuntimeException e) {
             throw new InternalServerErrorException(ErrorCodes.GENERAL_DATABASE_ERR.getResponseDesc());
         }
     }
@@ -118,23 +122,24 @@ public class BookServiceImpl implements BookService {
     private void validateCreateRequest(CreateBookRequest request, BindingResult bindingResult) {
         createBookValidator.validate(request, bindingResult);
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             throw new InvalidRequestException(INVALID_REQUEST.getResponseDesc(), bindingResult);
         }
 
-        if(bookRepository.findBookByIsbnNumber(request.getIsbnNumber()) != null)
+        if (bookRepository.findBookByIsbnNumber(request.getIsbnNumber()) != null) {
             throw new InvalidRequestException(DUPLICATE_FIELD_ISBN_NUMBER.getResponseDesc(), bindingResult);
-
+        }
     }
 
     private void validateUpdateRequest(UpdateBookRequest request, BindingResult bindingResult) {
         updateBookValidator.validate(request, bindingResult);
 
-        if(bindingResult.hasErrors()) {
+        if (bindingResult.hasErrors()) {
             throw new InvalidRequestException(INVALID_REQUEST.getResponseDesc(), bindingResult);
         }
 
-        if(bookRepository.findBookByIsbnNumber(request.getIsbnNumber()) != null)
+        if (bookRepository.findBookByIsbnNumber(request.getIsbnNumber()) != null) {
             throw new InvalidRequestException(DUPLICATE_FIELD_ISBN_NUMBER.getResponseDesc(), bindingResult);
+        }
     }
 }
