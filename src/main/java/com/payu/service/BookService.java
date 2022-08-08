@@ -6,7 +6,6 @@ import com.payu.api.response.CreateBookResponse;
 import com.payu.api.response.DeleteBookResponse;
 import com.payu.api.response.GetBooksResponse;
 import com.payu.api.response.UpdateBookResponse;
-import org.springframework.data.domain.Pageable;
 import org.springframework.validation.BindingResult;
 
 /**
