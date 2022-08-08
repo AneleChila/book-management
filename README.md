@@ -52,10 +52,10 @@ mvn spring-boot:run
 
 **1. Swagger UI**
 ```bash
-http://localhost:8080/api/swagger-ui/index.html#/
+http://localhost:8080/swagger-ui/index.html#/
 ```
 
 **2. Import JSON Collection**
 ```bash
-http://localhost:8080/api/api-docs/
+http://localhost:8080/api-docs/
 ```
