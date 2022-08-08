@@ -37,15 +37,12 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DataJpaTest(includeFilters = @ComponentScan.Filter(Service.class))
 public class BookServiceTest {
 
-    @MockBean
-    private Validator validator;
-
-    @Autowired
-    private BookService bookService;
-
     @Rule
     public final ExpectedException exception = ExpectedException.none();
-
+    @MockBean
+    private Validator validator;
+    @Autowired
+    private BookService bookService;
     private AutoCloseable closeable;
 
     @Before

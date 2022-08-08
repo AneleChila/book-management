@@ -15,12 +15,12 @@ import java.util.List;
 @AllArgsConstructor
 public class GetBooksResponse extends BookResponse {
 
-    private List<GetBookResponse> booksList =  new ArrayList<>();
+    private List<GetBookResponse> booksList = new ArrayList<>();
     private long totalBooks;
     private long totalPages;
 
     public GetBooksResponse() {
-        super(ResponseCode.RETRIEVED.getCode(),ResponseCode.RETRIEVED.getDesc());
+        super(ResponseCode.RETRIEVED.getCode(), ResponseCode.RETRIEVED.getDesc());
     }
 
     public void addBook(GetBookResponse book) {

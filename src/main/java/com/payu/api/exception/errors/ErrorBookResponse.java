@@ -19,28 +19,38 @@ public class ErrorBookResponse extends BookResponse {
         super(code, message);
     }
 
-    public String getCode() { return super.getCode(); }
+    public String getCode() {
+        return super.getCode();
+    }
 
-    public void setCode(String code) { super.setCode(code); }
+    public void setCode(String code) {
+        super.setCode(code);
+    }
 
-    public String getMessage() { return super.getMessage(); }
+    public String getMessage() {
+        return super.getMessage();
+    }
 
-    public void setMessage(String message) { super.setMessage(message); }
+    public void setMessage(String message) {
+        super.setMessage(message);
+    }
 
-    public Map<String, FieldErrorResource> getFieldErrors() { return fieldErrors; }
+    public Map<String, FieldErrorResource> getFieldErrors() {
+        return fieldErrors;
+    }
 
     public void setFieldErrors(List<FieldErrorResource> fieldErrors) {
         this.fieldErrors = new LinkedHashMap<>();
         for (FieldErrorResource fieldErrorResource : fieldErrors) {
-					this.fieldErrors.put(fieldErrorResource.getField(), fieldErrorResource);
-				}
+            this.fieldErrors.put(fieldErrorResource.getField(), fieldErrorResource);
+        }
     }
-    
+
     public void addGlobalError(String message) {
-    	if (globalErrors == null) {
-    		globalErrors = new LinkedList<String>();
-    	}
-    	
-    	globalErrors.add(message);
+        if (globalErrors == null) {
+            globalErrors = new LinkedList<String>();
+        }
+
+        globalErrors.add(message);
     }
 }

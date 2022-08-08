@@ -11,9 +11,9 @@ import lombok.Getter;
 public enum ResponseCode {
 
     DELETED("200", "Deleted successfully"),
-    UPDATED( "200","Updated successfully"),
-    RETRIEVED("200","Retrieved successfully"),
-    CREATED("200","Created successfully");
+    UPDATED("200", "Updated successfully"),
+    RETRIEVED("200", "Retrieved successfully"),
+    CREATED("200", "Created successfully");
 
 
     private String code;

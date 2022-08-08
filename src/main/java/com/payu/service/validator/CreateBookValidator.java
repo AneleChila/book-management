@@ -29,7 +29,7 @@ public class CreateBookValidator implements Validator {
 
         try {
             Set<ConstraintViolation<CreateBookRequest>> violations = validator.validate(serverRequest);
-            for(ConstraintViolation<CreateBookRequest> violation  : violations) {
+            for (ConstraintViolation<CreateBookRequest> violation : violations) {
                 errors.rejectValue(violation.getPropertyPath().toString(), FIELD_VALIDATION_ERR.getResponseCode(), violation.getMessage());
             }
 

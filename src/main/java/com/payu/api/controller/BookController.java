@@ -38,7 +38,7 @@ public class BookController {
         return bookService.findBookById(id);
     }
 
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT )
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
     public UpdateBookResponse updateBook(@PathVariable("id") Long id,
                                          @RequestBody UpdateBookRequest request,
                                          BindingResult bindingResult) {

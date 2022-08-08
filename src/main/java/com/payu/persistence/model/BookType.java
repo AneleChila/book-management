@@ -11,7 +11,7 @@ import lombok.Getter;
 public enum BookType {
 
     EBook("eBook"),
-    SoftCover( "Soft Cover"),
+    SoftCover("Soft Cover"),
     HardCover("Hard Cover");
 
     private String type;

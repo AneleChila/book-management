@@ -29,7 +29,7 @@ public class UpdateBookResponse extends BookResponse {
     private BookType type;
 
     public UpdateBookResponse(Book book) {
-        super(ResponseCode.UPDATED.getCode(),ResponseCode.UPDATED.getDesc());
+        super(ResponseCode.UPDATED.getCode(), ResponseCode.UPDATED.getDesc());
         this.id = book.getId();
         this.name = book.getName();
         this.isbnNumber = book.getIsbnNumber();

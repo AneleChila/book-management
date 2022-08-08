@@ -14,5 +14,5 @@ import java.math.BigInteger;
 @Repository
 public interface BookRepository extends JpaRepository<Book, Long> {
     @Query("SELECT b FROM Book b WHERE b.isbnNumber = :isbnNumber")
-    Book findBookByIsbnNumber(@Param("isbnNumber")BigInteger isbnNumber);
+    Book findBookByIsbnNumber(@Param("isbnNumber") BigInteger isbnNumber);
 }

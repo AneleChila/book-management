@@ -102,7 +102,7 @@ public class BookControllerTest {
         )
                 .andExpect(status().isOk());
 
-        mockMvc.perform(delete(URI + "/"+ TEST_BOOK_ID))
+        mockMvc.perform(delete(URI + "/" + TEST_BOOK_ID))
                 .andExpect(status().isOk());
     }
 
@@ -130,7 +130,7 @@ public class BookControllerTest {
 
         mapper = new ObjectMapper();
         jsonString = mapper.writeValueAsString(book);
-        mockMvc.perform(put(URI + "/"+ TEST_BOOK_ID)
+        mockMvc.perform(put(URI + "/" + TEST_BOOK_ID)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(jsonString)
         )
@@ -139,7 +139,7 @@ public class BookControllerTest {
 
     @Test
     public void shouldGetAllBooks() throws Exception {
-    mockMvc.perform(get(URI, TEST_BOOK_ID))
+        mockMvc.perform(get(URI, TEST_BOOK_ID))
                 .andExpect(status().isOk());
     }
 }

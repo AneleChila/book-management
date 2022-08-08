@@ -26,46 +26,46 @@ import java.util.List;
  */
 @ControllerAdvice
 public class ControllerExceptionHandler extends ResponseEntityExceptionHandler {
-	private final Logger logger = LoggerFactory.getLogger(getClass());
+    private final Logger logger = LoggerFactory.getLogger(getClass());
 
-  @ExceptionHandler({ InvalidRequestException.class })
-  protected ResponseEntity<Object> handleInvalidRequest(InvalidRequestException ire, WebRequest request) {
-  	logger.info("InvalidRequestException caught", ire);
-      List<FieldErrorResource> fieldErrorResources = new ArrayList<>();
+    @ExceptionHandler({InvalidRequestException.class})
+    protected ResponseEntity<Object> handleInvalidRequest(InvalidRequestException ire, WebRequest request) {
+        logger.info("InvalidRequestException caught", ire);
+        List<FieldErrorResource> fieldErrorResources = new ArrayList<>();
 
-      List<FieldError> fieldErrors = ire.getErrors().getFieldErrors();
-      for (FieldError fieldError : fieldErrors) {
-          FieldErrorResource fieldErrorResource = new FieldErrorResource();
-          fieldErrorResource.setResource(fieldError.getObjectName());
-          fieldErrorResource.setField(fieldError.getField());
-          fieldErrorResource.setCode(fieldError.getCode());
-          fieldErrorResource.setMessage(fieldError.getDefaultMessage());
-          fieldErrorResources.add(fieldErrorResource);
-      }
+        List<FieldError> fieldErrors = ire.getErrors().getFieldErrors();
+        for (FieldError fieldError : fieldErrors) {
+            FieldErrorResource fieldErrorResource = new FieldErrorResource();
+            fieldErrorResource.setResource(fieldError.getObjectName());
+            fieldErrorResource.setField(fieldError.getField());
+            fieldErrorResource.setCode(fieldError.getCode());
+            fieldErrorResource.setMessage(fieldError.getDefaultMessage());
+            fieldErrorResources.add(fieldErrorResource);
+        }
 
-      ErrorBookResponse error = new ErrorBookResponse(ErrorCodes.INVALID_REQUEST.getResponseCode(), ire.getMessage());
-      error.setFieldErrors(fieldErrorResources);
+        ErrorBookResponse error = new ErrorBookResponse(ErrorCodes.INVALID_REQUEST.getResponseCode(), ire.getMessage());
+        error.setFieldErrors(fieldErrorResources);
 
-      HttpHeaders headers = new HttpHeaders();
-      headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-      return handleExceptionInternal(ire, error, headers, HttpStatus.UNPROCESSABLE_ENTITY, request);
-  }
+        return handleExceptionInternal(ire, error, headers, HttpStatus.UNPROCESSABLE_ENTITY, request);
+    }
 
-  @ExceptionHandler( { BadRequestException.class } )
-  protected ResponseEntity<Object> handleBadRequest(BadRequestException bre, WebRequest request) {
-  	logger.info("BadRequestException caught", bre);
+    @ExceptionHandler({BadRequestException.class})
+    protected ResponseEntity<Object> handleBadRequest(BadRequestException bre, WebRequest request) {
+        logger.info("BadRequestException caught", bre);
 
-      ErrorBookResponse error = new ErrorBookResponse(ErrorCodes.BAD_REQUEST.getResponseCode(), bre.getMessage());
-      error.addGlobalError(bre.getMessage());
+        ErrorBookResponse error = new ErrorBookResponse(ErrorCodes.BAD_REQUEST.getResponseCode(), bre.getMessage());
+        error.addGlobalError(bre.getMessage());
 
-      HttpHeaders headers = new HttpHeaders();
-      headers.setContentType(MediaType.APPLICATION_JSON);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
 
-    return handleExceptionInternal(bre, error, headers, HttpStatus.BAD_REQUEST, request);
-  }
+        return handleExceptionInternal(bre, error, headers, HttpStatus.BAD_REQUEST, request);
+    }
 
-    @ExceptionHandler(value = { Exception.class, RuntimeException.class })
+    @ExceptionHandler(value = {Exception.class, RuntimeException.class})
     protected ResponseEntity<Object> handleInternalServerError(InternalServerErrorException e, WebRequest request) {
 
         ErrorBookResponse error = new ErrorBookResponse(ErrorCodes.GENERAL_SYSTEM_ERR.getResponseCode(), e.getMessage());

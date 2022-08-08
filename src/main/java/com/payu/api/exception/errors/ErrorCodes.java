@@ -12,14 +12,14 @@ public enum ErrorCodes {
     GENERAL_SYSTEM_ERR(3, "General System Error", HttpStatus.INTERNAL_SERVER_ERROR),
     FIELD_VALIDATION_ERR(4, "Invalid field: ", HttpStatus.BAD_REQUEST),
     INVALID_REQUEST(5, "Invalid Request", HttpStatus.BAD_REQUEST),
-    BOOK_NOT_FOUND(6,"Book does not exist", HttpStatus.BAD_REQUEST),
+    BOOK_NOT_FOUND(6, "Book does not exist", HttpStatus.BAD_REQUEST),
     DUPLICATE_FIELD_ISBN_NUMBER(7, "Duplicate field : Isbn number", HttpStatus.BAD_REQUEST);
 
 
+    private static final String RESPONSE_CODE_FORMAT = "%04d";
     private String responseCode;
     private String responseDesc;
     private HttpStatus httpStatus;
-    private static final String RESPONSE_CODE_FORMAT = "%04d";
 
     ErrorCodes(int responseCode, String responseDesc, HttpStatus httpStatus) {
         if (responseCode >= 0) {

@@ -29,7 +29,7 @@ public class CreateBookResponse extends BookResponse {
     private BookType type;
 
     public CreateBookResponse(Book book) {
-        super(ResponseCode.CREATED.getCode(),ResponseCode.CREATED.getDesc());
+        super(ResponseCode.CREATED.getCode(), ResponseCode.CREATED.getDesc());
         this.id = book.getId();
         this.name = book.getName();
         this.isbnNumber = book.getIsbnNumber();
